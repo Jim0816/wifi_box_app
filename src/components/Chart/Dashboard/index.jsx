@@ -8,16 +8,34 @@ import download from '../../../asserts/photo/curnet/download.png'
 import speed from '../../../asserts/photo/curnet/speed.png'
 import delay from '../../../asserts/photo/curnet/delay.png'
 import bg from '../../../asserts/photo/curnet/bg.png'
+import down from '../../../asserts/photo/curnet/down.png'
 
-import { Rate } from 'antd-mobile';
+import {Picker } from 'antd-mobile';
+
+const basicColumns = [
+  [
+    { label: 'TP-LINK-1111', value: 'TP-LINK-1111' },
+    { label: 'TP-LINK-1112', value: 'TP-LINK-1112' },
+    { label: 'TP-LINK-1113', value: 'TP-LINK-1113' },
+    { label: 'TP-LINK-1114', value: 'TP-LINK-1114' },
+    { label: 'TP-LINK-1115', value: 'TP-LINK-1115' },
+  ]
+]
+
 
 export default class index extends Component {
+
+  state = {
+    pickerVisible: false,
+    pickerValue: 'TP-LINK-1113'
+  }
 
   componentDidMount(){
 
   }
 
   render() {
+    let {pickerVisible, pickerValue} = this.state
     return (
       <div className={chart.container}>
         <div className={chart.box}>
@@ -35,7 +53,22 @@ export default class index extends Component {
           <span style={{marginLeft: '0rem', width: '4rem', height: '4rem'}}>
             <img src={wifi_logo} style={{width: '100%', height: '100%'}}/>
           </span>
-          <label style={{marginLeft: '1.625rem', color: '#333333', fontSize: '2.7rem', lineHeight: '5rem', fontWeight: 'bolde'}}>TP-LINK-1111</label>
+          <label onClick={this.openPicker} style={{marginLeft: '1.625rem', color: '#333333', fontSize: '2.7rem', lineHeight: '5rem', fontWeight: 'bolde'}}>{pickerValue}</label>
+          <span style={{marginTop: '0.9rem', marginLeft: '1.025rem', width: '3.5rem', height: '3.5rem'}}>
+            <img onClick={this.openPicker} src={down} style={{width: '100%', height: '100%'}}/>
+          </span>
+          <Picker 
+            columns={basicColumns} 
+            visible={pickerVisible}
+            value={pickerValue}
+            onCancel={this.closePicker}
+            onConfirm={(value) => {this.confirmPicker(value)}}
+            style={{
+              height: '40rem',
+              "--item-height": '5rem',
+              "--header-button-font-size": '3rem', 
+              "--item-font-size": '3rem', 
+              "--title-font-size": '3rem'}} />
         </div>
 
         <div className={chart.overlay_1}>
@@ -152,6 +185,23 @@ export default class index extends Component {
       ]
     };
     return option
+  }
+
+  openPicker = () => {
+    this.state.pickerVisible = true
+    this.forceUpdate()
+  }
+
+  closePicker = () => {
+    this.state.pickerVisible = false
+    this.forceUpdate()
+  }
+
+  confirmPicker = (value) => {
+    let val = value[0]
+    this.state.pickerValue = val
+    this.state.pickerVisible = false
+    this.forceUpdate()
   }
 
   

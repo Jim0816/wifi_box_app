@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import exit from '../../asserts/photo/exit.png'
 import frame from './index.module.css'
 
 
@@ -18,10 +17,10 @@ function index(props) {
         return(
           <span className={frame.app_top_item} style={{left: (index + 1) * 170 + 'px', width: '150px'}} 
           onClick={e => props.history.push(route.path)}>
-            <span className={frame.app_top_item_img}>
+            {/* <span className={frame.app_top_item_img}>
               <img src={curPath === route.path ? route.showIcon : route.hideIcon} style={{height: "100%", width: "100%"}}></img>
             </span>
-            <text className={frame.app_top_item_text} style={{'color': curPath === route.path? '#3BFCFB' : '#B0B0AF'}}>{route.title}</text>
+            <text className={frame.app_top_item_text} style={{'color': curPath === route.path? '#3BFCFB' : '#B0B0AF'}}>{route.title}</text> */}
           </span>
         );
       })}
@@ -31,7 +30,7 @@ function index(props) {
       <span className={frame.app_top_exit}>
         <text>退出</text>
         <span className={frame.app_top_exit_img}>
-          <img src={exit} style={{height: "100%", width: "100%"}}></img>
+          {/* <img src={exit} style={{height: "100%", width: "100%"}}></img> */}
         </span>
       </span>
 
